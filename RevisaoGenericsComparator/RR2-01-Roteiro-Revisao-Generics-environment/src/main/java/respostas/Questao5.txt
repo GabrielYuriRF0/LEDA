@@ -1,0 +1,5 @@
+public void m(Collection<T> obj);
+
+- Esse tipo de construção permite que o método descrito pela interface
+utitlize uma coleção de qualquer tipo e esse tipo vai ser definido
+pela classe que implementar a interface.

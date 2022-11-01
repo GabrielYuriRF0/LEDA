@@ -1,0 +1,4 @@
+public void m(Collection<T> obj)
+
+- Esse tipo de construção se chama unkown wildcard, que é quando se quer
+tratar o tipo do objeto o mais genérico possível.

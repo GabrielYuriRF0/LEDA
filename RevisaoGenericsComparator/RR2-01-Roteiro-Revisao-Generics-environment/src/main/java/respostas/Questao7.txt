@@ -1,0 +1,4 @@
+public void m(? extends T obj)
+
+- Essa construção se chama de Extends WildCard, que permite
+que o objeto em questão aceite qualquer tipo da classe que ele extende.

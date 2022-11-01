@@ -1,0 +1,4 @@
+ public void m(? super T obj)
+
+ - Essa construção se chama Super WildCard, que permite a utilização de qualquer tipo
+ derivado da superclasse em questão.
