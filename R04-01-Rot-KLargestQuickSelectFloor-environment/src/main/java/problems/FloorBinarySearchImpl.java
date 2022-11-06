@@ -1,6 +1,6 @@
 package problems;
 
-import java.util.Arrays;
+import util.Util;
 
 public class FloorBinarySearchImpl implements Floor {
 
@@ -53,7 +53,7 @@ public class FloorBinarySearchImpl implements Floor {
 	private int partition(Integer[] array, int leftIndex, int rightIndex){
 		int range = rightIndex - leftIndex + 1;
 		int rand_pivot_index = (int)(Math.random() * range) + leftIndex;
-		swap(array, leftIndex, rand_pivot_index);
+		Util.swap(array, leftIndex, rand_pivot_index);
 
 		int pivot = array[leftIndex];
 		int i = leftIndex;
@@ -61,24 +61,10 @@ public class FloorBinarySearchImpl implements Floor {
 		for (int j = leftIndex + 1; j <= rightIndex; j++) {
 			if (array[j] <= pivot) {
 				i+=1;
-				swap(array, i, j);
+				Util.swap(array, i, j);
 			}
 		}
-		swap(array, leftIndex, i);
+		Util.swap(array, leftIndex, i);
 		return i;
 	}
-
-	private static void swap(Integer[] array, int i, int j) {
-		if (array == null)
-			throw new IllegalArgumentException();
-
-		Integer temp = array[i];
-		array[i] = array[j];
-		array[j] = temp;
-	}
-
-
-
-
-
 }
