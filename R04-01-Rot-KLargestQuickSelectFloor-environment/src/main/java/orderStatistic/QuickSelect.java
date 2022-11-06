@@ -1,5 +1,7 @@
 package orderStatistic;
 
+import util.Util;
+
 /**
  * O quickselect eh um algoritmo baseado no quicksort para
  * descobrir/selectionar, em tempo linear, a k-esima estatistica de ordem
@@ -42,7 +44,49 @@ public class QuickSelect<T extends Comparable<T>> {
 	 *
 	 */
 	public T quickSelect(T[] array, int k) {
-		// TODO Implement your code here
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if(validator(array,k) == false){
+			return null;
+		}
+		return quickSort(array,0,array.length-1,k);
+	}
+
+	private boolean validator(T[] array, int k){
+
+		if( array == null || array.length == 0 || k <= 0 || k > array.length){
+			return false;
+		}
+		return true;
+	}
+
+	private T quickSort(T[] array, int left, int right, int k){
+		if(left < right){
+			int index_pivot = partition(array, left, right);
+			if(k < index_pivot + 1){
+				return quickSort(array,left,right-1,k);
+			}
+			else if(k > index_pivot + 1){
+				return quickSort(array,index_pivot + 1, right,k);
+			}
+			return array[index_pivot];
+
+		}
+		return array[k-1];
+
+	}
+	private int partition(T[] array, int leftIndex, int rightIndex){
+		int range = rightIndex - leftIndex + 1;
+		int rand_pivot_index = (int)(Math.random() * range) + leftIndex;
+		Util.swap(array, leftIndex, rand_pivot_index);
+		T pivot = array[leftIndex];
+		int i = leftIndex;
+
+		for (int j = leftIndex + 1; j <= rightIndex; j++) {
+			if (array[j] .compareTo(pivot) <=0) {
+				i+=1;
+				Util.swap(array, i, j);
+			}
+		}
+		Util.swap(array, leftIndex, i);
+		return i;
 	}
 }
