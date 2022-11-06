@@ -12,8 +12,6 @@ public class FloorTeste {
     @Before
     public void init(){
        this.implementation = new FloorBinarySearchImpl();
-
-
     }
 
     @Test

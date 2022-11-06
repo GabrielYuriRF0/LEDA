@@ -1,5 +1,8 @@
 package orderStatistic;
 
+import util.Util;
+
+
 /**
  * Uma implementacao da interface KLargest que usa estatisticas de ordem para 
  * retornar um array com os k maiores elementos de um conjunto de dados/array.
@@ -29,9 +32,18 @@ public class KLargestOrderStatisticsImpl<T extends Comparable<T>> implements KLa
 
 	@Override
 	public T[] getKLargest(T[] array, int k) {
-		// TODO Implement your code here
-		throw new UnsupportedOperationException("Not implemented yet!");
-		//este metodo deve obrigatoriamente usar o orderStatistics abaixo.
+		if(array == null || array.length == 0 || k <= 0 || k > array.length){
+			T[] arrayVazio = (T[]) new Comparable[0];
+			return arrayVazio;
+		}
+		T[] result = (T[]) new Comparable[k];
+
+		int cont = 0;
+		for(int i = 1; i <= k; i++){
+			result[cont++] = orderStatistics(array,i);
+		}
+		return result;
+
 	}
 
 	/**
@@ -46,7 +58,42 @@ public class KLargestOrderStatisticsImpl<T extends Comparable<T>> implements KLa
 	 * @return
 	 */
 	public T orderStatistics(T[] array, int k){
-		// TODO Implement your code here
-		throw new UnsupportedOperationException("Not implemented yet!");		
+		if(k > array.length || k <= 0){
+			return null;
+		}
+		else{
+			quickSort(array,0,array.length - 1);
+			return array[array.length - k];
+		}
+
+
 	}
+
+	private void quickSort(T[] array, int left, int right){
+		if(left < right){
+			int index_pivot = partition(array, left, right);
+			quickSort(array, left, index_pivot - 1);
+			quickSort(array, index_pivot + 1, right);
+		}
+
+	}
+	private int partition(T[] array, int leftIndex, int rightIndex){
+		int range = rightIndex - leftIndex + 1;
+		int rand_pivot_index = (int)(Math.random() * range) + leftIndex;
+		Util.swap(array, leftIndex, rand_pivot_index);
+		T pivot = array[leftIndex];
+		int i = leftIndex;
+
+		for (int j = leftIndex + 1; j <= rightIndex; j++) {
+			if (array[j] .compareTo(pivot) <=0) {
+				i+=1;
+				Util.swap(array, i, j);
+			}
+		}
+		Util.swap(array, leftIndex, i);
+		return i;
+	}
+
+
+
 }
