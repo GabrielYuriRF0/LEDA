@@ -6,13 +6,38 @@ public class FloorBinarySearchImpl implements Floor {
 
 	@Override
 	public Integer floor(Integer[] array, Integer x) {
-		quickSort(array,0,array.length-1);
+		int leftIndex = 0;
+		int righIndex = array.length-1;
+		int m = (leftIndex + righIndex) / 2;
 
-		return 0;
+		quickSort(array,leftIndex,righIndex);
+
+		if(x < array[leftIndex]){
+			return null;
+		}
+
+		return bynarySearch(x,array,leftIndex,righIndex);
 	}
 
-	private boolean binarySearch(int x, Integer[] array, int left, int right){
+	private Integer bynarySearch(int x, Integer[] array, int left, int right){
+		int middle = (left + right) / 2;
 
+		if(left > right){
+			return array[middle];
+		}
+
+
+		if(x == array[middle]){
+			return x;
+		}
+
+
+		if(x < array[middle]){
+			return bynarySearch(x,array,left,middle-1);
+		}
+		else{
+			return bynarySearch(x,array,middle+1,right);
+		}
 
 	}
 

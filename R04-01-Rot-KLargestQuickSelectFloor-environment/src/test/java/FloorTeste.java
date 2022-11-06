@@ -4,7 +4,7 @@ import org.junit.Test;
 import problems.FloorBinarySearchImpl;
 
 public class FloorTeste {
-    Integer [] arrayTest1 = {25,38,15,96,30,84};
+    Integer [] arrayTest1 = {25,38,15,96,4,30,84};
     Integer[] arrayTest2 = {4,6,8,10};
     Integer[] arrayTest3 = {54,22,15,20,87,100,3,7};
     FloorBinarySearchImpl implementation;
