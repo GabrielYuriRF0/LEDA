@@ -6,6 +6,9 @@ public class FloorBinarySearchImpl implements Floor {
 
 	@Override
 	public Integer floor(Integer[] array, Integer x) {
+		if(x < 0){
+			return null;
+		}
 		int leftIndex = 0;
 		int righIndex = array.length-1;
 		int m = (leftIndex + righIndex) / 2;
