@@ -6,7 +6,7 @@ public class FloorBinarySearchImpl implements Floor {
 
 	@Override
 	public Integer floor(Integer[] array, Integer x) {
-		if(x < 0){
+		if(validator(array,x) == false){
 			return null;
 		}
 		int leftIndex = 0;
@@ -20,6 +20,13 @@ public class FloorBinarySearchImpl implements Floor {
 		}
 
 		return bynarySearch(x,array,leftIndex,righIndex);
+	}
+
+	private boolean validator(Integer[] array, Integer x){
+		if(array == null || array.length == 0 || x < 0){
+			return false;
+		}
+		return true;
 	}
 
 	private Integer bynarySearch(int x, Integer[] array, int left, int right){

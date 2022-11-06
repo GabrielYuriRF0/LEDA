@@ -17,10 +17,10 @@ public class KLargestOrderStatisticsTest {
     @Test
     public void testesBases(){
         Integer[] result1 = {96};
-        Integer[] result2 = {96,84};
-        Integer[] result3 = {96,84,38};
-        Integer[] result4 = {96,84,38,30};
-        Integer[] result5 = {96,84,38,30,25,15,4};
+        Integer[] result2 = {84,96};
+        Integer[] result3 = {38,84,96};
+        Integer[] result4 = {30,38,84,96};
+        Integer[] result5 = {4,15,25,30,38,84,96};
 
         Assert.assertArrayEquals(result1,this.implementation.getKLargest(this.arrayTest1,1));
         Assert.assertArrayEquals(result2,this.implementation.getKLargest(this.arrayTest1,2));

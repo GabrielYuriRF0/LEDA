@@ -8,6 +8,8 @@ public class FloorTeste {
     private Integer [] arrayTest1 = {25,38,15,96,4,30,84};
     private Integer[] arrayTest2 = {4,6,8,10};
     private Integer[] arrayTest3 = {54,22,15,20,87,100,3,7};
+    private Integer[] arrayTest4 = {5,2,1,0};
+    private Integer[] arrayVazio = {};
     private Floor implementation;
 
     @Before
@@ -56,8 +58,22 @@ public class FloorTeste {
         Assert.assertEquals(n3,this.implementation.floor(this.arrayTest3,101));
         Assert.assertEquals(n4,this.implementation.floor(this.arrayTest3,57));
         Assert.assertNull(this.implementation.floor(this.arrayTest3,2));
+    }
 
+    @Test
+    public void floorArrayComZero(){
+        Integer n1 = 0;
+        Assert.assertEquals(n1,this.implementation.floor(this.arrayTest4,0));
+    }
 
+    @Test
+    public void arrayVazio(){
+        Assert.assertNull(this.implementation.floor(this.arrayVazio,0));
+    }
+
+    @Test
+    public void arrayNulo(){
+        Assert.assertNull(this.implementation.floor(null,5));
     }
 
     @Test
@@ -66,3 +82,5 @@ public class FloorTeste {
     }
 
 }
+
+
