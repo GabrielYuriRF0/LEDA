@@ -37,6 +37,9 @@ public class QuickSelectTest {
     @Test
     public void kInvalido(){
         Assert.assertNull(this.implementation.quickSelect(this.arrayTest1,this.arrayTest1.length+1));
+        Assert.assertNull(this.implementation.quickSelect(this.arrayTest1,0));
+        Assert.assertNull(this.implementation.quickSelect(this.arrayTest1,-1));
+
     }
 
 
