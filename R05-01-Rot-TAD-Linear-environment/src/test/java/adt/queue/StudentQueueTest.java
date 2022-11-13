@@ -1,12 +1,10 @@
 package adt.queue;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 public class StudentQueueTest {
 
@@ -32,15 +30,16 @@ public class StudentQueueTest {
 
 	private void getImplementations() {
 		// TODO O aluno deve ajustar aqui para instanciar sua implementação
-		queue1 = null;
-		queue2 = null;
-		queue3 = null;
+		queue1 = new QueueImpl<>(4);
+		queue2 = new QueueImpl<>(2);
+		queue3 = new QueueImpl<>(1);
 	}
 
 	// MÉTODOS DE TESTE
 	@Test
 	public void testHead() {
 		assertEquals(new Integer(1), queue1.head());
+		assertEquals(new Integer(1),queue2.head());
 	}
 
 	@Test
@@ -52,6 +51,7 @@ public class StudentQueueTest {
 	@Test
 	public void testIsFull() {
 		assertFalse(queue1.isFull());
+		assertTrue(queue2.isFull());
 	}
 
 	@Test
@@ -59,13 +59,14 @@ public class StudentQueueTest {
 		try {
 			queue1.enqueue(new Integer(5));
 		} catch (QueueOverflowException e) {
-			// TODO Auto-generated catch block
+			assertEquals("Fila cheia", e.getMessage());
 			e.printStackTrace();
 		}
 	}
 
 	@Test(expected = QueueOverflowException.class)
 	public void testEnqueueComErro() throws QueueOverflowException {
+		queue1.enqueue(4);
 		queue1.enqueue(new Integer(5)); // vai depender do tamanho que a fila
 										// foi iniciada!!!
 	}
@@ -75,15 +76,24 @@ public class StudentQueueTest {
 		try {
 			assertEquals(new Integer(1), queue1.dequeue());
 		} catch (QueueUnderflowException e) {
-			// TODO Auto-generated catch block
+			assertEquals("Fila vazia",e.getMessage());
 			e.printStackTrace();
 		}
 	}
 
 	@Test(expected = QueueUnderflowException.class)
 	public void testDequeueComErro() throws QueueUnderflowException {
+		queue1.dequeue();
+		queue1.dequeue();
+		queue1.dequeue();
 		assertEquals(new Integer(1), queue1.dequeue()); // vai depender do
 														// tamanho que a fial
 														// foi iniciada!!!
+	}
+
+	@Test
+	public void headFilaVazia(){
+		assertNull(queue3.head());
+
 	}
 }
