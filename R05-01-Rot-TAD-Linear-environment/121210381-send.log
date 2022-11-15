@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2022-11-10T10:41:07.628-0300</date>
+  <logger>GABRIEL YURI RAMALHO FERREIRA</logger>
+  <level>FINE</level>
+  <message>File 121210381-GABRIEL YURI RAMALHO FERREIRA.zip was received. It was sent by GABRIEL YURI RAMALHO FERREIRA from IP 150.165.42.168 at 10-11-2022 10*41*07</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2022-11-15T09:45:06.504-0300</date>
+  <logger>GABRIEL YURI RAMALHO FERREIRA</logger>
+  <level>FINE</level>
+  <message>File 121210381-GABRIEL YURI RAMALHO FERREIRA.zip was received. It was sent by GABRIEL YURI RAMALHO FERREIRA from IP 192.168.1.7 at 15-11-2022 09*45*06</message>
+</record>

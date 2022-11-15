@@ -15,32 +15,71 @@ public class QueueUsingStack<T> implements Queue<T> {
 
 	@Override
 	public void enqueue(T element) throws QueueOverflowException {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if(isFull()){
+			throw new QueueOverflowException();
+		}
+		int elements = 0;
+		if(stack1.isFull()){
+			while(!stack1.isEmpty()){
+				try{
+					stack2.push(stack1.pop());
+				}
+				catch (Exception e){
+
+				}
+			}
+		}
+
+		else{
+
+			try{
+				stack2.push(stack1.top());
+			}
+			catch (Exception e){
+
+			}
+		}
+
+
+
 	}
 
 	@Override
 	public T dequeue() throws QueueUnderflowException {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if(isEmpty()){
+			throw new QueueUnderflowException();
+		}
+        T element = stack2.top();
+        try {
+            stack2.pop();
+            stack1.pop();
+
+        }
+        catch (Exception e){
+
+        }
+
+        return element;
 	}
 
 	@Override
 	public T head() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if(isEmpty()){
+            System.out.println("Entrou");
+            return null;
+        }
+        return stack2.top();
+
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		return stack2.isEmpty();
 	}
 
 	@Override
 	public boolean isFull() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		return stack2.isFull();
 	}
 
 }

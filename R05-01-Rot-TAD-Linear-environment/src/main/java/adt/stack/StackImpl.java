@@ -48,7 +48,5 @@ public class StackImpl<T> implements Stack<T> {
 		T element = this.array[this.top];
 		this.top--;
 		return element;
-
 	}
-
 }
