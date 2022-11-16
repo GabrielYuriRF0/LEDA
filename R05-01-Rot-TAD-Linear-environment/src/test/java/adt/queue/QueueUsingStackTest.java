@@ -23,13 +23,13 @@ public class QueueUsingStackTest {
     }
 
     @Test
-    public void head() throws QueueOverflowException{
+    public void enqueueWithSucess() throws Exception{
         queue.enqueue(1);
         queue.enqueue(2);
         queue.enqueue(3);
         queue.enqueue(4);
         queue.enqueue(5);
-        Assert.assertEquals(new Integer(1), queue.head());
+        Assert.assertEquals(new Integer(1), queue.dequeue());
 
     }
 

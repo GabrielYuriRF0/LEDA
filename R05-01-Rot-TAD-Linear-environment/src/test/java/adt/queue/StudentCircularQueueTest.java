@@ -9,8 +9,8 @@ public class StudentCircularQueueTest {
 
     @Before
     public void init()throws QueueOverflowException{
-        this.queue1 = new CircularQueue<>(5);
-        this.queue2 = new CircularQueue<>(2);
+        this.queue1 = new QueueUsingStack<>(5);
+        this.queue2 = new QueueUsingStack<>(2);
         this.queue2.enqueue(new Integer(2));
         this.queue2.enqueue(new Integer(4));
 

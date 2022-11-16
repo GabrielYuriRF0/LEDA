@@ -18,26 +18,13 @@ public class QueueUsingStack<T> implements Queue<T> {
 		if(isFull()){
 			throw new QueueOverflowException();
 		}
-		int elements = 0;
-		if(stack1.isFull()){
-			while(!stack1.isEmpty()){
-				try{
-					stack2.push(stack1.pop());
-				}
-				catch (Exception e){
+		//Insert elements in stack1
+		try{
+			stack1.push(element);
 
-				}
-			}
 		}
+		catch (Exception e){
 
-		else{
-
-			try{
-				stack2.push(stack1.top());
-			}
-			catch (Exception e){
-
-			}
 		}
 
 
@@ -49,37 +36,82 @@ public class QueueUsingStack<T> implements Queue<T> {
 		if(isEmpty()){
 			throw new QueueUnderflowException();
 		}
-        T element = stack2.top();
-        try {
-            stack2.pop();
-            stack1.pop();
+		T element = null;
+		if(stack2.isEmpty()){
+			while(!stack1.isEmpty()){
+				try{
+					stack2.push(stack1.pop());
+				}
+				catch (Exception e){
 
-        }
-        catch (Exception e){
+				}
+			}
+			try {
+				element = stack2.pop();
 
-        }
+			}
+			catch (Exception e){
 
-        return element;
+			}
+
+		}
+		else{
+			try {
+				element = stack2.pop();
+
+			}
+			catch (Exception e){
+
+			}
+
+		}
+		return element;
+
 	}
+
 
 	@Override
 	public T head() {
-		if(isEmpty()){
-            System.out.println("Entrou");
-            return null;
-        }
-        return stack2.top();
+		if (isEmpty()) {
+			return null;
+		}
+		T element = null;
+		if (stack2.isEmpty()) {
+			while (!stack1.isEmpty()) {
+				try {
+					stack2.push(stack1.pop());
+				} catch (Exception e) {
 
+				}
+			}
+			try {
+				element = stack2.top();
+
+			} catch (Exception e) {
+
+			}
+
+		} else {
+			try {
+				element = stack2.top();
+
+			}
+			catch (Exception e) {
+
+			}
+
+		}
+		return element;
 	}
 
 	@Override
 	public boolean isEmpty() {
-		return stack2.isEmpty();
+		 return stack1.isEmpty() && stack2.isEmpty();
 	}
 
 	@Override
 	public boolean isFull() {
-		return stack2.isFull();
+		return stack1.isFull();
 	}
 
 }
