@@ -18,14 +18,17 @@ public class QueueUsingStack<T> implements Queue<T> {
 		if(isFull()){
 			throw new QueueOverflowException();
 		}
-		//Insert elements in stack1
-		try{
-			stack1.push(element);
+		if(element != null){
+			//Insert elements in stack1
+			try{
+				stack1.push(element);
 
-		}
-		catch (Exception e){
+			}
+			catch (Exception e){
 
+			}
 		}
+
 
 
 

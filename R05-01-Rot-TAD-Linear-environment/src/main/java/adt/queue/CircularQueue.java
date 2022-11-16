@@ -19,12 +19,16 @@ public class CircularQueue<T> implements Queue<T> {
 		if(isFull()){
 			throw new QueueOverflowException();
 		}
-		if(this.tail == this.array.length-1){
-			this.tail = -1;
+		if(element != null){
+			if(this.tail == this.array.length-1){
+				this.tail = -1;
+			}
+			this.tail++;
+			this.elements++;
+			this.array[this.tail] = element;
+
 		}
-		this.tail++;
-		this.elements++;
-		this.array[this.tail] = element;
+
 
 	}
 

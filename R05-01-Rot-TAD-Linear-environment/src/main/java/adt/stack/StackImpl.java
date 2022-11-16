@@ -35,8 +35,12 @@ public class StackImpl<T> implements Stack<T> {
 			throw new StackOverflowException();
 		}
 
-		this.top++;
-		this.array[this.top] = element;
+		if(element != null){
+			this.top++;
+			this.array[this.top] = element;
+		}
+
+
 
 	}
 
