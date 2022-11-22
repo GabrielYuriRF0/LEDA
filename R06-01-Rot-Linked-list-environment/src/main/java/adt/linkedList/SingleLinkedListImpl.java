@@ -41,17 +41,19 @@ public class SingleLinkedListImpl<T> implements LinkedList<T> {
 		if(isEmpty()){
 			return null;
 		}
-		if(size() == 1){
-			return head.getData();
-		}
-		SingleLinkedListNode aux = head;
-		while(!aux.getNext().isNIL()){
-			if(aux.getData().equals(element)){
-				return (T) aux.getData();
+
+		else{
+			SingleLinkedListNode aux = head;
+			while(!aux.getNext().isNIL()){
+				if(aux.getData().equals(element)){
+					return (T) aux.getData();
+				}
+				aux = aux.getNext();
+
 			}
-			aux = aux.getNext();
 
 		}
+
 		return null;
 	}
 
@@ -63,7 +65,7 @@ public class SingleLinkedListImpl<T> implements LinkedList<T> {
 			SingleLinkedListNode aux = head;
 
 
-			if(size() == 0){
+			if(isEmpty()){
 				head = newNode;
 				newNode.setNext(new SingleLinkedListNode<>());
 			}
@@ -83,18 +85,25 @@ public class SingleLinkedListImpl<T> implements LinkedList<T> {
 	public void remove(T element) {
 		if(!isEmpty()){
 			if(size() == 1){
-				head.setNext(new SingleLinkedListNode<>());
+				head = (new SingleLinkedListNode<>());
 			}
 			else{
 				SingleLinkedListNode aux = head;
-				while(!aux.getNext().isNIL()){
-					if(aux.getNext().getData().equals(element)){
-						aux.setNext(aux.getNext().getNext());
-						aux.setNext(new SingleLinkedListNode<>());
-						break;
-					}
-					aux = aux.getNext();
+				if(aux.getData().equals(element)){
+					head = head.getNext();
 				}
+				else{
+					while(!aux.getNext().isNIL()){
+						if(aux.getNext().getData().equals(element)){
+							aux.setNext(aux.getNext().getNext());
+							break;
+						}
+						aux = aux.getNext();
+
+					}
+
+				}
+
 			}
 		}
 	}
@@ -109,11 +118,11 @@ public class SingleLinkedListImpl<T> implements LinkedList<T> {
 		T[] out = (T[]) new Comparable[size()];
 		SingleLinkedListNode aux = head;
 		int cont = 0;
-		while(!aux.getNext().isNIL()){
+		while(!aux.isNIL()){
 			out[cont] = (T) aux.getData();
 			aux = aux.getNext();
+			cont++;
 		}
-		System.out.println(Arrays.toString(out));
 
 		return out;
 

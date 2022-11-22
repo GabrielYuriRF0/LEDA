@@ -31,6 +31,11 @@ public class StudentLinkedListTest {
 	public void testIsEmpty() {
 		Assert.assertFalse(lista1.isEmpty());
 		Assert.assertTrue(lista2.isEmpty());
+		lista2.insert(1);
+		Assert.assertFalse(lista2.isEmpty());
+		lista2.remove(1);
+		Assert.assertTrue(lista2.isEmpty());
+
 	}
 
 	@Test
@@ -44,6 +49,16 @@ public class StudentLinkedListTest {
 		Assert.assertTrue(2 == lista1.search(2));
 		Assert.assertNull(lista1.search(4));
 		Assert.assertFalse(3 == lista1.search(2));
+	}
+
+	@Test
+	public void testSearch2(){
+		Assert.assertNull(lista2.search(5));
+		lista2.insert(5);
+		lista2.insert(6);
+		lista2.remove(5);
+		Assert.assertNull(lista2.search(5));
+
 	}
 
 	@Test
@@ -63,14 +78,35 @@ public class StudentLinkedListTest {
 	public void testRemove() {
 		Assert.assertEquals(3, lista1.size());
 		lista1.remove(2);
+		Assert.assertEquals(2,lista1.size());
 		lista1.remove(1);
 		Assert.assertEquals(1, lista1.size());
+	}
 
+	@Test
+	public void testRemove2(){
+		lista2.insert(1);
+		lista2.insert(2);
+		lista2.remove(0);
+		Assert.assertEquals(2, lista2.size());
+
+		lista2.remove(1);
+		lista2.remove(2);
+		lista2.toArray();
+		Assert.assertEquals(0,lista2.size());
 	}
 
 	@Test
 	public void testToArray() {
 		Assert.assertArrayEquals(new Integer[] {}, lista2.toArray());
 		Assert.assertArrayEquals(new Integer[] { 3, 2, 1 }, lista1.toArray());
+		lista1.remove(1);
+		Assert.assertArrayEquals(new Integer[] {3, 2}, lista1.toArray());
+		lista1.remove(3);
+		Assert.assertArrayEquals(new Integer[] {2}, lista1.toArray());
+		lista1.remove(2);
+		Assert.assertArrayEquals(new Integer[] {}, lista1.toArray());
+
+
 	}
 }
