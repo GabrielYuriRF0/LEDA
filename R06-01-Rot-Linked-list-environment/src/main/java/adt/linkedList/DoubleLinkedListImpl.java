@@ -9,6 +9,7 @@ public class DoubleLinkedListImpl<T> extends SingleLinkedListImpl<T> implements
 	public void insertFirst(T element) {
 		DoubleLinkedListNode newNode = new DoubleLinkedListNode<>();
 		newNode.setData(element);
+		super.head =  (DoubleLinkedListNode <T>)  super.head;
 
 		if(super.isEmpty()){
 			super.setHead(newNode);
@@ -17,6 +18,7 @@ public class DoubleLinkedListImpl<T> extends SingleLinkedListImpl<T> implements
 			newNode.setPrevious(new DoubleLinkedListNode());
 		}
 		else{
+
 			newNode.setNext(super.getHead());
 			newNode.setPrevious(new DoubleLinkedListNode());
 
