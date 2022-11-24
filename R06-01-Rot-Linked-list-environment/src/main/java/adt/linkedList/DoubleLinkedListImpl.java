@@ -1,5 +1,7 @@
 package adt.linkedList;
 
+import jdk.vm.ci.code.stack.StackIntrospection;
+
 public class DoubleLinkedListImpl<T> extends SingleLinkedListImpl<T> implements
 		DoubleLinkedList<T> {
 
@@ -7,9 +9,8 @@ public class DoubleLinkedListImpl<T> extends SingleLinkedListImpl<T> implements
 
 	@Override
 	public void insertFirst(T element) {
-		DoubleLinkedListNode newNode = new DoubleLinkedListNode<>();
-		newNode.setData(element);
-		super.head =  (DoubleLinkedListNode <T>)  super.head;
+		DoubleLinkedListNode newNode = new DoubleLinkedListNode<>(element, new DoubleLinkedListNode<>(), new DoubleLinkedListNode<>());
+
 
 		if(super.isEmpty()){
 			super.setHead(newNode);
@@ -18,9 +19,9 @@ public class DoubleLinkedListImpl<T> extends SingleLinkedListImpl<T> implements
 			newNode.setPrevious(new DoubleLinkedListNode());
 		}
 		else{
-
 			newNode.setNext(super.getHead());
 			newNode.setPrevious(new DoubleLinkedListNode());
+			super.setHead(newNode);
 
 		}
 
@@ -28,8 +29,20 @@ public class DoubleLinkedListImpl<T> extends SingleLinkedListImpl<T> implements
 
 	@Override
 	public void removeFirst() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if(!isEmpty()){
+			super.setHead((DoubleLinkedListNode<T>)super.getHead());
+			if((super.getHead().equals(getLast()))){
+				super.setHead(new DoubleLinkedListNode<>());
+				setLast(new DoubleLinkedListNode<>());
+			}
+
+			else{
+
+			}
+		}
+
+
+
 	}
 
 	@Override
