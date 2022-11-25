@@ -1,7 +1,5 @@
 package adt.linkedList;
 
-import jdk.vm.ci.code.stack.StackIntrospection;
-
 public class DoubleLinkedListImpl<T> extends SingleLinkedListImpl<T> implements
 		DoubleLinkedList<T> {
 
@@ -30,14 +28,13 @@ public class DoubleLinkedListImpl<T> extends SingleLinkedListImpl<T> implements
 	@Override
 	public void removeFirst() {
 		if(!isEmpty()){
-			super.setHead((DoubleLinkedListNode<T>)super.getHead());
 			if((super.getHead().equals(getLast()))){
 				super.setHead(new DoubleLinkedListNode<>());
 				setLast(new DoubleLinkedListNode<>());
 			}
 
 			else{
-
+				super.setHead(super.getHead().getNext());
 			}
 		}
 
