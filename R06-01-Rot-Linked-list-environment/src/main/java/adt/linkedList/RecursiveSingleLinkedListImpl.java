@@ -5,45 +5,67 @@ public class RecursiveSingleLinkedListImpl<T> implements LinkedList<T> {
 	protected T data;
 	protected RecursiveSingleLinkedListImpl<T> next;
 
-	public RecursiveSingleLinkedListImpl() {
-
-	}
 
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		return data == null;
 	}
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if(isEmpty()) {
+			return 0;
+		}
+		return 1 + next.size();
 	}
 
 	@Override
 	public T search(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if(isEmpty()) {
+			return null;
+		}
+		if(data.equals(element)) {
+			return data;
+		}
+		return next.search(element);
 	}
 
 	@Override
 	public void insert(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if(isEmpty()) {
+			data = element;
+			next = new RecursiveSingleLinkedListImpl<T>();
+		} else {
+			next.insert(element);
+		}
 	}
 
 	@Override
 	public void remove(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if(!isEmpty()) {
+			if(data.equals(element)) {
+				data = next.getData();
+				next = next.getNext();
+			} else {
+				next.remove(element);
+			}
+		}
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public T[] toArray() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		T[] array = (T[]) new Object[size()];
+		toArray(array, 0);
+		return array;
+	}
+
+	private void toArray(T[] array, int i) {
+		if(!isEmpty()) {
+			array[i] = data;
+			next.toArray(array, i+1);
+		}
 	}
 
 	public T getData() {
@@ -61,5 +83,4 @@ public class RecursiveSingleLinkedListImpl<T> implements LinkedList<T> {
 	public void setNext(RecursiveSingleLinkedListImpl<T> next) {
 		this.next = next;
 	}
-
 }
