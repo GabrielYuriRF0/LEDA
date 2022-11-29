@@ -1,10 +1,9 @@
 package adt.hashtable.open;
 
-import adt.hashtable.hashfunction.HashFunction;
+
 import adt.hashtable.hashfunction.HashFunctionClosedAddressMethod;
 import adt.hashtable.hashfunction.HashFunctionLinearProbing;
 
-import javax.swing.plaf.SeparatorUI;
 
 public class HashtableOpenAddressLinearProbingImpl<T extends Storable> extends
 		AbstractHashtableOpenAddress<T> {

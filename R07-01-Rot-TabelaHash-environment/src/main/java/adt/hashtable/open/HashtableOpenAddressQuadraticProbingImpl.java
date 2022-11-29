@@ -15,25 +15,96 @@ public class HashtableOpenAddressQuadraticProbingImpl<T extends Storable>
 
 	@Override
 	public void insert(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if ((element!=null) && (this.search(element)==null)) {
+			if (super.isFull()) {
+				throw new HashtableOverflowException();
+			}
+
+			boolean wasInserted = false;
+			int probe = 0;
+
+			while (!wasInserted) {
+				int hash = ((HashFunctionQuadraticProbing<T>) hashFunction).hash(element, probe++);
+
+				if ((super.table[hash]==null) || (super.table[hash].equals(super.deletedElement))) {
+
+					super.table[hash] = element;
+					super.elements++;
+					wasInserted = true;
+
+				} else {
+					super.COLLISIONS++;
+				}
+			}
+		}
 	}
 
 	@Override
 	public void remove(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if ((element!=null) && (!super.isEmpty())) {
+
+			int probe = 0;
+
+			while (probe<super.capacity()) {
+				int hash = ((HashFunctionQuadraticProbing<T>) hashFunction).hash(element, probe);
+
+				if (super.table[hash]==null) {
+
+					break;
+
+				} else if (super.table[hash].equals(element)) {
+
+					super.table[hash] = super.deletedElement;
+					super.elements--;
+					break;
+				}
+
+				probe++;
+			}
+		}
 	}
 
 	@Override
 	public T search(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		T result = null;
+
+		if ((element!=null) && (!super.isEmpty())) {
+
+			int hash = this.indexOf(element);
+
+			if (hash!=-1) {
+				result = (T) super.table[hash];
+			}
+		}
+
+		return result;
 	}
 
 	@Override
 	public int indexOf(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		int result = -1;
+
+		if ((element!=null) && (!super.isEmpty())) {
+
+			int probe = 0;
+
+			while (probe<super.capacity()) {
+				int hash = ((HashFunctionQuadraticProbing<T>) hashFunction).hash(element, probe);
+
+				if ((super.table[hash]==null) || (super.table[hash].equals(super.deletedElement))) {
+
+					break;
+
+				} else if (super.table[hash].equals(element)) {
+
+					result = hash;
+					break;
+				}
+
+				probe++;
+			}
+		}
+
+		return result;
 	}
 }
