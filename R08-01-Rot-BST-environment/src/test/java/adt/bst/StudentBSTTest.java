@@ -105,7 +105,7 @@ public class StudentBSTTest {
 			tree.remove(tree.getRoot().getData());
 			assertEquals(--size, tree.size());
 		}
-		System.out.println(tree.size());
+
 	}
 
 	@Test
