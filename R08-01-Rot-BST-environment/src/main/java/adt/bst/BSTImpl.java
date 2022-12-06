@@ -1,5 +1,7 @@
 package adt.bst;
 
+import adt.bt.BTNode;
+
 public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 
 	protected BSTNode<T> root;
@@ -26,31 +28,20 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 	@Override
 	public BSTNode<T> search(T element) {
 		if(isEmpty()){
-			BSTNode<Integer> node = (BSTNode<Integer>) new BSTNode.Builder<Integer>()
-					.data(null)
-					.left(null)
-					.right(null)
-					.parent(null)
-					.build();
-			return (BSTNode<T>) node;
+			return new BSTNode<>();
 		}
 		else{
 			return search(this.root, element);
 		}
 
 	}
-	private BSTNode<T> search(BSTNode current, T element){
-		if(element.compareTo((T) current.getData()) == 0){
-			return current;
+	private BSTNode<T> search(BSTNode<T> current, T element){
+
+		if(current.isEmpty()){
+			return new BSTNode<>();
 		}
-		else if(current.isEmpty()){
-			BSTNode<Integer> node = (BSTNode<Integer>) new BSTNode.Builder<Integer>()
-					.data(null)
-					.left(null)
-					.right(null)
-					.parent(null)
-					.build();
-			return (BSTNode<T>) node;
+		else if(element.compareTo(current.getData()) == 0){
+			return current;
 		}
 		else if (element.compareTo((T) current.getData()) < 0){
 			return search((BSTNode<T>) current.getLeft(), element);
@@ -200,22 +191,50 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 		BSTNode<T> node = search(element);
 		if(!isEmpty() && !node.isEmpty()){
 			if(node.isLeaf()){
-				node.setData(null);
-				node.setLeft(null);
-				node.setRight(null);
-			}
-			else if(!node.getLeft().isEmpty() && node.getRight().isEmpty()){
-				node.getParent().setLeft(node.getLeft());
-			}
-			else if(!node.getRight().isEmpty() && node.getLeft().isEmpty()){
-				node.getParent().setRight(node.getRight());
-			}
-			else{
-				BSTNode<T> sucessor = sucessor(node.getData());
-				node = sucessor;
-				remove(sucessor.getData());
+				node = new BSTNode<T>();
 			}
 
+			else if(!node.getLeft().isEmpty() && node.getRight().isEmpty()){
+				if(node.equals(this.root)){
+					this.root = (BSTNode<T>) node.getLeft();
+					this.root.setParent(null);
+				}
+				else{
+					node.getLeft().setParent(node.getParent());
+
+					if(node.getData().compareTo(node.getParent().getData()) < 0){
+						node.getParent().setLeft(node.getLeft());
+
+					}
+					else{
+						node.getParent().setRight(node.getLeft());
+					}
+
+				}
+			}
+			else if(node.getLeft().isEmpty() && !node.getRight().isEmpty()){
+				if(node.equals(this.root)){
+					this.root = (BSTNode<T>) node.getRight();
+					this.root.setParent(null);
+				}
+				else{
+					node.getRight().setParent(node.getParent());
+
+					if(node.getData().compareTo(node.getParent().getData()) < 0){
+						node.getParent().setLeft(node.getRight());
+
+					}
+					else{
+						node.getParent().setRight(node.getRight());
+					}
+				}
+			}
+
+			else{
+				T sucessor = sucessor(node.getData()).getData();
+				remove(sucessor);
+				node.setData(sucessor);
+			}
 		}
 	}
 
