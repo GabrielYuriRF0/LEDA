@@ -30,16 +30,15 @@ public class FloorCeilBSTImpl extends BSTImpl<Integer> implements FloorCeilBST {
 				floor(root, (BSTNode<Integer>) current.getLeft(), numero);
 
 			}
-			if(numero > current.getData()){
+			else if(numero > current.getData()){
 				floor(root, (BSTNode<Integer>) current.getRight(), numero);
-			}
-			if(current.getLeft().isEmpty() && !current.getRight().isEmpty()){
-				return current.getRight().getData();
 			}
 
-			if(!current.getLeft().isEmpty() && !current.getRight().isEmpty()){
-				floor(root, (BSTNode<Integer>) current.getRight(), numero);
+			else{
+				return current.getData();
 			}
+
+
 
 		}
 
