@@ -35,8 +35,8 @@ public class FloorCeilBSTImplTest {
         Integer[] array = { 6, 23, -34, 5, 9, 2, 0, 76, 12, 67, 232, -40};
         assertEquals((Integer)6,this.tree.ceil( array, 6));
 
-        Integer value = -40;
-        assertEquals(value,this.tree.ceil( array, -40));
+        Integer value = 23;
+        assertEquals(value,this.tree.ceil( array, 23));
 
         value = 2;
         assertEquals(value,this.tree.ceil( array, 1));

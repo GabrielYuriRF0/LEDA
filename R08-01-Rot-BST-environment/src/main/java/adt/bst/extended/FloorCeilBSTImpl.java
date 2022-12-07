@@ -14,44 +14,74 @@ public class FloorCeilBSTImpl extends BSTImpl<Integer> implements FloorCeilBST {
 
 	@Override
 	public Integer floor(Integer[] array, double numero) {
-		if(array.length == 0){
+		if (array.length == 0) {
 			return null;
 		}
 
-		for(Integer element: array){
+		for (Integer element : array) {
 			insert(element);
 		}
-		return floor(this.root, this.root, (int) numero);
+		return floor(root, (int) numero);
 	}
 
-	private Integer floor(BSTNode<Integer> root, BSTNode<Integer> current ,int numero){
-		if(!current.isEmpty()){
-			if(numero < current.getData()){
-				floor(root, (BSTNode<Integer>) current.getLeft(), numero);
-
-			}
-			else if(numero > current.getData()){
-				floor(root, (BSTNode<Integer>) current.getRight(), numero);
+	private Integer floor(BSTNode<Integer> current, int numero) {
+		if (numero < current.getData()) {
+			if (!current.getLeft().isEmpty()) {
+				return floor((BSTNode<Integer>) current.getLeft(), numero);
 			}
 
-			else{
+			if (current.getLeft().isEmpty()) {
+				return null;
+			}
+			return current.getData();
+
+		} else if (numero > current.getData()) {
+			if (current.getRight().isEmpty()) {
 				return current.getData();
 			}
-
-
-
+			return floor((BSTNode<Integer>) current.getRight(), numero);
+		} else if (current.getData() == numero) {
+			return current.getData();
 		}
 
+
 		return null;
-
-
 
 	}
 
 	@Override
 	public Integer ceil(Integer[] array, double numero) {
-		//TODO Implemente seu codigo aqui
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if (array.length == 0) {
+			return null;
+		} else {
+			for (Integer element : array) {
+				insert(element);
+			}
+			return ceil(this.root, (int) numero);
+		}
 	}
 
+	private Integer ceil(BSTNode<Integer> current, int numero) {
+		if (!current.isEmpty()) {
+			if (current.getData() == numero) {
+				return current.getData();
+			}
+
+			if(numero < current.getData()){
+				if(current.getLeft().getData() < numero)
+					if(current.getLeft().getData() < numero && current.getRight().isEmpty() && current){
+						return current.getData();
+					}
+				return ceil((BSTNode<Integer>) current.getLeft(), numero);
+			}
+
+			else if (numero > current.getData()){
+				return ceil((BSTNode<Integer>) current.getRight(), numero);
+			}
+		}
+		return null;
+	}
 }
+
+
+
