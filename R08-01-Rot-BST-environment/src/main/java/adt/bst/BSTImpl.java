@@ -2,6 +2,8 @@ package adt.bst;
 
 import adt.bt.BTNode;
 
+import java.util.ArrayList;
+
 public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 
 	protected BSTNode<T> root;
@@ -203,7 +205,6 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 					node.setData(null);
 					node.setLeft(null);
 					node.setRight(null);
-
 				}
 
 				else if (node.getLeft().isEmpty() || node.getRight().isEmpty()) {
@@ -236,7 +237,6 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 							}
 
 							else {
-
 								parent.setLeft(node.getRight());
 								node.getRight().setParent(parent);
 
@@ -261,11 +261,9 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 				}
 
 				else {
-
 					T sucessor = sucessor(node.getData()).getData();
 					remove(sucessor);
 					node.setData(sucessor);
-
 				}
 
 			}
@@ -275,30 +273,81 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 
 	@Override
 	public T[] preOrder() {
-		T[] out = (T[]) new Comparable[size()];
-		for(int i = 0; i < size();i++){
-			out[i] = preOrder(this.root);
+		if(isEmpty()){
+			return (T[]) new Comparable[size()];
 		}
+
+		else{
+			ArrayList<T> out = new ArrayList<T>();
+			preOrder(this.root, out);
+			return (T[]) out.toArray(new Comparable[0]);
+		}
+
 
 	}
 
-	private T preOrder(BSTNode<T> current){
-		if(!current.isEmpty()){
+	private void preOrder(BSTNode<T> current, ArrayList<T> array){
+		array.add(current.getData());
 
+		if(!current.getLeft().isEmpty()){
+			preOrder((BSTNode<T>) current.getLeft(), array);
+		}
+		if(!current.getRight().isEmpty()){
+			preOrder((BSTNode<T>) current.getRight(), array);
 		}
 
 	}
 
 	@Override
 	public T[] order() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if(isEmpty()){
+			return (T[]) new Comparable[size()];
+
+		}
+		else{
+			ArrayList<T> out = new ArrayList<T>();
+			order(this.root, out);
+			return (T[]) out.toArray(new Comparable[0]);
+
+		}
+	}
+
+	private void order(BSTNode<T> current, ArrayList<T> array){
+		if(!current.getLeft().isEmpty()){
+			order((BSTNode<T>) current.getLeft(), array);
+		}
+		array.add(current.getData());
+
+		if(!current.getRight().isEmpty()){
+			order((BSTNode<T>) current.getRight(), array);
+		}
+
 	}
 
 	@Override
 	public T[] postOrder() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if(isEmpty()){
+			return (T[]) new Comparable[size()];
+		}
+		else{
+			ArrayList<T> out = new ArrayList<T>();
+			postOrder(this.root, out);
+			return (T[]) out.toArray(new Comparable[0]);
+
+		}
+	}
+
+	private void postOrder(BSTNode<T> current, ArrayList<T> array){
+		if(!current.getLeft().isEmpty()){
+			postOrder((BSTNode<T>) current.getLeft(), array);
+		}
+
+		if(!current.getRight().isEmpty()){
+			postOrder((BSTNode<T>) current.getRight(), array);
+		}
+
+		array.add(current.getData());
+
 	}
 
 	/**

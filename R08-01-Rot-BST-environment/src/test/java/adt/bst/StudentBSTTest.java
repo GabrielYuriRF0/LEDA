@@ -153,4 +153,16 @@ public class StudentBSTTest {
 		assertEquals(new Integer(-34), tree.search(-34).getData());
 		assertEquals(NIL, tree.search(2534));
 	}
+
+	@Test
+	public void orderTest(){
+		fillTree();
+
+		Integer[] order = { -40, -34, 0, 2, 5, 6, 9, 12, 23, 67, 76, 232 };
+		assertArrayEquals(order, tree.order());
+		Integer[] postOrder = {-40, 0, 2, 5, -34, 12, 9, 67, 232, 76, 23, 6};
+		assertArrayEquals(postOrder, tree.postOrder());
+		Integer[] preOrder = new Integer[] { 6, -34, -40, 5, 2, 0, 23, 9, 12, 76, 67, 232 };
+		assertArrayEquals(preOrder, tree.preOrder());
+	}
 }
