@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="8" failures="0" name="adt.bst.StudentBSTTest" time="0.073" errors="0" skipped="0">
+<testsuite tests="2" failures="0" name="adt.bst.FloorCeilBSTImplTest" time="0" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="java.vm.version" value="17.0.3.1+2-LTS-6"/>
@@ -61,12 +61,6 @@
     <property name="sun.stdout.encoding" value="cp850"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="adt.bst.StudentBSTTest" name="testSucessorPredecessor" time="0.061"/>
-  <testcase classname="adt.bst.StudentBSTTest" name="testInit" time="0.009"/>
-  <testcase classname="adt.bst.StudentBSTTest" name="testSize" time="0"/>
-  <testcase classname="adt.bst.StudentBSTTest" name="orderTest" time="0.001"/>
-  <testcase classname="adt.bst.StudentBSTTest" name="testHeight" time="0.001"/>
-  <testcase classname="adt.bst.StudentBSTTest" name="testMinMax" time="0"/>
-  <testcase classname="adt.bst.StudentBSTTest" name="testRemove" time="0.001"/>
-  <testcase classname="adt.bst.StudentBSTTest" name="testSearch" time="0"/>
+  <testcase classname="adt.bst.FloorCeilBSTImplTest" name="testFloor" time="0"/>
+  <testcase classname="adt.bst.FloorCeilBSTImplTest" name="testCeil" time="0"/>
 </testsuite>

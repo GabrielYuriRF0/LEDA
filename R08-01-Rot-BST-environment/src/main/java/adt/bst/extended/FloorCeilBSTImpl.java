@@ -53,7 +53,8 @@ public class FloorCeilBSTImpl extends BSTImpl<Integer> implements FloorCeilBST {
 	public Integer ceil(Integer[] array, double numero) {
 		if (array.length == 0) {
 			return null;
-		} else {
+		}
+		else {
 			for (Integer element : array) {
 				insert(element);
 			}
@@ -61,26 +62,35 @@ public class FloorCeilBSTImpl extends BSTImpl<Integer> implements FloorCeilBST {
 		}
 	}
 
-	private Integer ceil(BSTNode<Integer> current, int numero) {
-		if (!current.isEmpty()) {
-			if (current.getData() == numero) {
-				return current.getData();
-			}
+    private Integer ceil(BSTNode<Integer> node, double numero) {
+        Integer result = null;
 
-			if(numero < current.getData()){
-				if(current.getLeft().getData() < numero)
-					if(current.getLeft().getData() < numero && current.getRight().isEmpty() && current){
-						return current.getData();
-					}
-				return ceil((BSTNode<Integer>) current.getLeft(), numero);
-			}
+        if (node!=null && !node.isEmpty()) {
 
-			else if (numero > current.getData()){
-				return ceil((BSTNode<Integer>) current.getRight(), numero);
-			}
-		}
-		return null;
-	}
+            if (node.getData()==numero) {
+                result = node.getData();
+            } else if (node.getData()<numero) {
+                result = ceil((BSTNode<Integer>) node.getRight(), numero);
+            } else {
+                Integer ceil = ceil((BSTNode<Integer>) node.getLeft(), numero);
+
+                if (ceil!=null) {
+
+                    if (ceil>=numero) {
+                        result = ceil;
+                    } else {
+                        result = node.getData();
+                    }
+
+                } else {
+                    result = node.getData();
+                }
+            }
+
+        }
+
+        return result;
+    }
 }
 
 
