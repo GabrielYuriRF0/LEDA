@@ -17,3 +17,13 @@
   <level>FINE</level>
   <message>File 121210381-GABRIEL YURI RAMALHO FERREIRA.zip was received. It was sent by GABRIEL YURI RAMALHO FERREIRA from IP 192.168.1.7 at 07-12-2022 22*07*52</message>
 </record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2022-12-08T11:27:16.697-0300</date>
+  <logger>GABRIEL YURI RAMALHO FERREIRA</logger>
+  <level>FINE</level>
+  <message>File 121210381-GABRIEL YURI RAMALHO FERREIRA.zip was received. It was sent by GABRIEL YURI RAMALHO FERREIRA from IP 192.168.1.7 at 08-12-2022 11*27*16</message>
+</record>
